@@ -1,0 +1,12 @@
+{
+    "name": "r0sari0/rabbitmq",
+    "authors": [
+        {
+            "name": "r0sari0",
+            "email": "r0sari0@wp.pl"
+        }
+    ],
+    "require": {
+        "php-amqplib/php-amqplib":"dev-master"
+    }
+}

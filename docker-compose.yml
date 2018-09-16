@@ -1,0 +1,35 @@
+version: '3.6'
+services:
+  rabbit:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - rabbit-producer
+      - rabbit-consumer
+  producer:
+    image: producer
+    container_name: producer
+    build: ./producer/
+    volumes:
+      - .:/app
+    networks:
+      - rabbit-producer
+    depends_on:
+      - rabbit
+  consumer:
+    image: consumer
+    container_name: consumer
+    build: ./consumer/
+    volumes:
+      - .:/app
+    networks:
+      - rabbit-consumer
+    depends_on:
+      - rabbit
+networks:
+  rabbit-producer:
+    name: rabbit-producer
+  rabbit-consumer:
+    name: rabbit-consumer
